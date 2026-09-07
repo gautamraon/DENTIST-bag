@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to Payment...</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      margin: 0;
+      background-color: #fafafa;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      max-width: 360px;
+      width: 100%;
+    }
+    .btn {
+      display: block;
+      margin-top: 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h3 style="margin: 0 0 8px;">Opening UPI App...</h3>
+    <p style="color: #666; font-size: 14px; margin: 0;">Pre-filling ₹699 for your order.</p>
+    <a id="payLink" class="btn" href="#">Tap to Choose UPI App</a>
+  </div>
+
+  <script>
+    // 1. Enter your specific payment details here
+    const upiId = "gautamrao191@oksbi";
+    const payeeName = "GAUTAM N";
+    const amount = "699";
+    const note = "Unisex "DENTIST" Utility Bag Zippered";
+
+    // 2. Build the standard intent link
+    const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+    // 3. Bind to the fallback button
+    document.getElementById("payLink").href = upiUri;
+
+    // 4. Automatically prompt the phone's native UPI app drawer
+    window.location.href = upiUri;
+  </script>
+
+</body>
+</html>
